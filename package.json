@@ -1,0 +1,24 @@
+{
+  "name": "basic-nodejs",
+  "version": "1.0.0",
+  "description": "Content of the Basic NodeJS Course of Platzi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NathaEEUD/Basic-NodeJS-Platzi.git"
+  },
+  "keywords": [
+    "Basic",
+    "Project",
+    "NodeJS"
+  ],
+  "author": "Nathaly Riaño Bejarano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NathaEEUD/Basic-NodeJS-Platzi/issues"
+  },
+  "homepage": "https://github.com/NathaEEUD/Basic-NodeJS-Platzi#readme"
+}
