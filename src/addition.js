@@ -3,6 +3,6 @@ module.exports = {
     asyncAdd: (a, b) => {
         setTimeout(() => {
             console.log(a + b)
-        }, 5000)
+        }, 0)
     }
 }
