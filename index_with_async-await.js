@@ -9,7 +9,7 @@ function readFiles(path, encoding) {
     return new Promise((resolve, reject) => {
         fs.readFile(path, encoding, (err, data) => {
             if (err) throw err
-            arrData = data.split(/\r?\n/)
+            let arrData = data.split(/\r?\n/)
             resolve(arrData)
         })
     })
@@ -25,29 +25,23 @@ function writeFiles(path, list) {
     })
 }
 
-async function writeNumbers() {
-    let readData = await readFiles(numberFilePath, 'utf8')
-    console.log(readData)
-    let numbers = readData.map(number => Number(number))
-    console.log(numbers)
-    let incNumbers = fileops.incrementValues(numbers)
-    console.log(incNumbers)
-    await writeFiles(`${resources}/numberNew.txt`, incNumbers.join('\n'))
-    console.log('Escritura de números exitosa')
+async function writeNumbers(readPath, writePath) {
+    let readData = await readFiles(readPath, 'utf8')
+    let incNumbers = fileops.incrementValues(readData).join('\n')
+    await writeFiles(writePath, incNumbers)
+        .then(result => console.log(`${result} de números`))
 }
 
-async function writeNames() {
-    let readData = await readFiles(nameFilePath, 'utf8')
-    console.log(readData)
-    let callNames = fileops.callNames(readData)
-    console.log(callNames)
-    await writeFiles(`${resources}/nameNew.txt`, callNames.join('\n'))
-    console.log('Escritura de nombres exitosa')
+async function writeNames(readPath, writePath) {
+    let readData = await readFiles(readPath, 'utf8')
+    let callNames = fileops.callNames(readData).join('\n')
+    await writeFiles(writePath, callNames)
+        .then(result => console.log(`${result} de nombres`))
 }
 
 const executeExercise = async () => {
-    await writeNumbers()
-    await writeNames()
+    await writeNumbers(numberFilePath, `${resources}/numberNew.txt`)
+    await writeNames(nameFilePath, `${resources}/nameNew.txt`)
 }
 
 executeExercise()
