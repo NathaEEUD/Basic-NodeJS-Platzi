@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/NathaEEUD/Basic-NodeJS-Platzi/issues"
   },
-  "homepage": "https://github.com/NathaEEUD/Basic-NodeJS-Platzi#readme"
+  "homepage": "https://github.com/NathaEEUD/Basic-NodeJS-Platzi#readme",
+  "dependencies": {
+    "cowsay": "^1.4.0"
+  }
 }
