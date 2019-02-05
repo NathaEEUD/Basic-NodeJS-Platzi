@@ -1,16 +1,27 @@
 const express = require('express')
 const app = express()
+const { PORT } = require('./config')
+const mongo = require('./db/connect')
 
-app.get('/app', (req, res) => {
-    res.send('Estoy en la ruta /app')
-})
-app.get('/', (req, res) => {
-    res.send('Estoy en la ruta HOME')
-})
-app.get('*', (req, res) => {
-    res.send('No sé donde estoy!')
-})
+require('./routes/api')(app)
+require('./routes/views')(app)
 
-app.listen(3000, () => {
-    console.log('El servidor está escuchando en el puerto 3000')
-})
+async function initDB() {
+    const db = await mongo.connect()
+    if (db) initExpress()
+}
+
+function initExpress() {
+    console.log('Iniciando instancia de Express...')
+    app.listen(PORT, () => {
+        console.log('El servidor Express está activo')
+    })
+    process.on('SIGINT', closeApp)
+    process.on('SIGTERM', closeApp)
+}
+
+function closeApp () {
+    mongo.disconnect
+        .then(() => process.exit(0))
+}
+initDB()
